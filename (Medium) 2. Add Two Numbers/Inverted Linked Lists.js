@@ -33,12 +33,12 @@ var addTwoNumbers = function(l1, l2) {
     
     sumS = sum.toString();
 
-    let first = 0;
+    let first = null;
     let current;
 
     for(i=sumS.length;i>0;i--){
-        let node = new ListNode(sumS.charAt(i - 1),null);
-        if(first === 0){
+        let node = new ListNode(parseInt(sumS.charAt(i - 1)),null);
+        if(first === null){
             first = node;
             current = node;
         }
@@ -50,7 +50,7 @@ var addTwoNumbers = function(l1, l2) {
     return first;
 };
 
-let l1 = new ListNode(2, new ListNode(4, new ListNode(3,null)));
+let l1 = new ListNode(1, new ListNode(0, new ListNode(0,new ListNode(0, new ListNode(0,new ListNode(0, new ListNode(0,new ListNode(1, null))))))));
 let l2 = new ListNode(5, new ListNode(6, new ListNode(4,null)));
 
 console.log(addTwoNumbers(l1,l2));
