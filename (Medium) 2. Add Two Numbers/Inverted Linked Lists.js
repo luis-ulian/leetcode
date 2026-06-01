@@ -33,21 +33,21 @@ var addTwoNumbers = function(l1, l2) {
     
     sumS = sum.toString();
 
-    let l3;
-    let first;
-    let next = null;
+    let first = 0;
+    let current;
 
     for(i=sumS.length;i>0;i--){
-        if(next != null){
-            next = new ListNode(sumS.charAt(i - 1),null);
-            next = next.next;
+        let node = new ListNode(sumS.charAt(i - 1),null);
+        if(first === 0){
+            first = node;
+            current = node;
         }
         else{
-            l3 = new ListNode(sumS.charAt(i - 1),null);
-            next = l3.next;
+            current.next = node;
+            current = current.next;
         }
     }
-    return l3;
+    return first;
 };
 
 let l1 = new ListNode(2, new ListNode(4, new ListNode(3,null)));
