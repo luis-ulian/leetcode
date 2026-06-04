@@ -1,41 +1,27 @@
 var minimumArrayLength = function(nums) {
-    let minSize;
-    /* 
-    map = new Map();
+    let minSize = 0;
+    let occursOnce = null;
+    let count = 1;
+    nums.sort((a,b) => a-b);
 
-    for(i=0;i<nums.length;i++){
-        map.set(i, nums[i]);
-    }
-    */
-    nums.sort((a,b) => b-a);
+    minNum = nums[0];
 
-    for(i=0;i<nums.length;i++){
-        for(y=nums.length - 1;y>=0;y--){
-            if(i === y) continue;
-            if(nums[i] === 0|| nums[y] === 0) continue;
-
-            console.log("nums = " + nums + "\ni, y = " + i + " " + y)
-            
-            rest = nums[y] % nums[i];
-
-            nums.push(rest);
-            
-            if(i >= y){
-                nums.splice(i,1);
-                nums.splice(y,1);
-            } else {
-                nums.splice(y,1);
-                nums.splice(i,1);
-            }
-            i = -1;
-            y = nums.length + 1;
-            break;
+    for(i=1; i < nums.length; i++){
+        if(nums[i] == minNum){
+            count++;
+            occursOnce = 0;
+        } else if (occursOnce != 0){
+            occursOnce = 1;
+        }
+        if(nums[i] % minNum < minNum && nums[i] % minNum != 0){
+            occursOnce = 1;
         }
     }
 
-    minSize = nums.length;
-
-    console.log(nums);
+    if(occursOnce == 1) minSize = 1;
+    else {
+        return Math.ceil(count/2);
+    }
 
     return minSize;
 };
